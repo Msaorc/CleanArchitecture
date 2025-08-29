@@ -10,11 +10,17 @@ import CustomerModel from '../../../customer/repository/sequelize/customer.model
 export default class OrderModel extends Model {
 
     @PrimaryKey
-    @Column
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare id: string;
 
     @ForeignKey(() => CustomerModel)
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare customer_id: string;
 
     @BelongsTo(() => CustomerModel)
@@ -23,6 +29,9 @@ export default class OrderModel extends Model {
     @HasMany(() => require('./order-items.model').default)
     declare items: any[];
 
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare total: number;
 }

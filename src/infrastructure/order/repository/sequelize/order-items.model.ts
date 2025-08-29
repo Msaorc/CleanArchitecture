@@ -1,4 +1,4 @@
-import {Table, Model, PrimaryKey, Column, ForeignKey, BelongsTo} from 'sequelize-typescript';
+import {Table, Model, PrimaryKey, Column, ForeignKey, BelongsTo, DataType} from 'sequelize-typescript';
 import ProductModel from '../../../product/repository/sequelize/product.model';
 import OrderModel from './order.model';
 
@@ -10,29 +10,47 @@ import OrderModel from './order.model';
 export default class OrderItemModel extends Model {
 
     @PrimaryKey
-    @Column
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare id: string;
 
     @ForeignKey(() => ProductModel)
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare product_id: string;
 
     @BelongsTo(() => ProductModel)
     declare product: ProductModel;
 
     @ForeignKey(() => OrderModel)
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare order_id: string;
 
     @BelongsTo(() => OrderModel)
     declare order: OrderModel;
 
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.NUMBER,
+        allowNull: false,
+    })
     declare quantity: number;
 
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare name: string;
 
-    @Column({allowNull: false})
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
     declare price: string;
 }
