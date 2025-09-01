@@ -19,24 +19,6 @@ const MockRepository = () => {
 }
 
 describe("Test find customer use case", () => {
-    // let sequileze: Sequelize;
-
-    // beforeEach(async () => {
-    //     sequileze = new Sequelize({
-    //         dialect: 'sqlite',
-    //         storage: ':memory:',
-    //         logging: false,
-    //         sync: { force: true},
-    //     });
-
-    //     sequileze.addModels([CustomerModel]);
-    //     await sequileze.sync();
-    // });
-
-    // afterAll(async () => {
-    //     await sequileze.close();
-    // });
-
     it("should find a customer", async () => {
         const customerRepository = MockRepository();
         const usecase = new FindCustomerUseCase(customerRepository);
@@ -58,5 +40,21 @@ describe("Test find customer use case", () => {
 
         const result = await usecase.execute(input);
         expect(result).toEqual(output);
+    });
+
+    it("should not find a customer", async () => {
+        const customerRepository = MockRepository();
+        customerRepository.find.mockImplementation(() => {
+            throw new Error("Customer not found");
+        })
+        const usecase = new FindCustomerUseCase(customerRepository);
+
+        const input = {
+            id: "123"
+        }
+
+        expect(() => {
+            return usecase.execute(input);
+        }).rejects.toThrow("Customer not found");
     });
 })
