@@ -1,0 +1,28 @@
+import CustomerRespositoryInterface from '../../../domain/customer/repository/customer.repository';
+import CustomerRepository from '../../../infrastructure/customer/repository/sequelize/customer.repository';
+import { InputUpdateCustomerDto, OutputUpdateCustomerDto } from './update.customer.dto';
+import CustomerFactory from '../../../domain/customer/factory/customer.factory';
+import Address from '../../../domain/customer/value-object/address';
+
+export default class UpdateCustomerUseCase {
+    private customerRepository: CustomerRespositoryInterface;
+
+    constructor(customerRepository: CustomerRespositoryInterface) {
+        this.customerRepository = customerRepository;
+    }
+
+    async execute(input: InputUpdateCustomerDto): Promise<OutputUpdateCustomerDto> {
+        const customer = CustomerFactory.createWithAddress(input.name, new Address(input.address.street, input.address.number, input.address.zip, input.address.city));
+        await this.customerRepository.update(customer);
+        return {
+            id: customer.id,
+            name: customer.name,
+            address: {
+                street: customer.Address.street,
+                number: customer.Address.number,
+                zip: customer.Address.zip,
+                city: customer.Address.city,
+            }
+        }
+    }
+}
