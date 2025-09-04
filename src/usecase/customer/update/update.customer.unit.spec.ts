@@ -34,7 +34,6 @@ describe("Unit test for customer update use case", () => {
         const customerRepository = MockRepository();
         const customerUpdateUseCase= new UpdateCustomerUseCase(customerRepository);
         const output = await customerUpdateUseCase.execute(input);
-
         expect(output).toEqual(input);
     })
 })
