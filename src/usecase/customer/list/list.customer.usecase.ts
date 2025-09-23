@@ -2,6 +2,7 @@ import Customer from "../../../domain/customer/entity/customer";
 import CustomerRespositoryInterface from "../../../domain/customer/repository/customer.repository";
 import { InputListCustomerDto, OutputListCustomerDto } from "./list.customer.dto";
 
+
 export default class ListCustomerUseCase {
     private customerRepository: CustomerRespositoryInterface;
 

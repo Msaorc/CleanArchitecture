@@ -1,8 +1,8 @@
 import CustomerRespositoryInterface from '../../../domain/customer/repository/customer.repository';
 import CustomerRepository from '../../../infrastructure/customer/repository/sequelize/customer.repository';
-import { InputUpdateCustomerDto, OutputUpdateCustomerDto } from './update.customer.dto';
 import CustomerFactory from '../../../domain/customer/factory/customer.factory';
 import Address from '../../../domain/customer/value-object/address';
+import { InputUpdateCustomerDto, OutputUpdateCustomerDto, } from './update.customer.dto';
 
 export default class UpdateCustomerUseCase {
     private customerRepository: CustomerRespositoryInterface;
