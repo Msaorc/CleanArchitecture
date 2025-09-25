@@ -18,7 +18,7 @@ customerRoute.post("/", async (req, res) => {
             }
         };
         const customer = await usecase.execute(customerDto);
-        res.status(200).json(customer);
+        res.status(200).send(customer);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -28,7 +28,7 @@ customerRoute.get("/", async (req, res) => {
     const usecase = new ListCustomerUseCase(new CustomerRepository());
     try {
         const customers = await usecase.execute({});
-        res.status(200).json(customers);
+        res.status(200).send(customers);
     } catch (error) {
         res.status(500).send(error);
     }

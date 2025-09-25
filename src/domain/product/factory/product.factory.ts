@@ -6,6 +6,8 @@ import {v4 as uuid} from 'uuid';
 export default class ProductFactory {
 
     public static create(type: string, name: string, price: number): ProductInterface{
+        console.log('passou no factory');
+        console.log(type);
         switch (type){
             case "a":
                 return new Product(uuid() ,name, price);
