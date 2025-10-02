@@ -25,10 +25,6 @@ export default class Customer extends Entity {
         return this._name;
     }
 
-    // get id(): string {
-    //     return this._id
-    // }
-
     get rewardPoints(): number {
         return this._rewardPoints;
     }
