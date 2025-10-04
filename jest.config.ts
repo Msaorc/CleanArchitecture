@@ -9,6 +9,16 @@ const config: Config = {
   transform: {
     "^.+\.(t|j)sx?$": ["@swc/jest", {}],
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(jstoxml)/)', 
+  ],
+  extensionsToTreatAsEsm: ['.ts'],
+
+  globals: {
+    'ts-jest': {
+      useESM: true, // 👈 Isso faz o ts-jest tratar módulos importados como ESM
+    },
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
