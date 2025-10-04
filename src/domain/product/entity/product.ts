@@ -1,5 +1,6 @@
 import Entity from "../../@shared/entity/entity.abstract";
 import NotificationError from "../../@shared/notification/notification.error";
+import ProductYupValidatorFactory from "../factory/product.validator.fatory";
 import ProductInterface from "./product.interface";
 
 export default class Product extends Entity implements ProductInterface {
@@ -28,33 +29,7 @@ export default class Product extends Entity implements ProductInterface {
     }
 
     validate(){
-        if (this._id.length === 0) {
-            this.notification.addError({
-                message: "Id is required", 
-                context: "product"
-            });
-        }
-
-        if (this._name.length === 0) {
-            this.notification.addError({
-                message: "Name is required",
-                context: "product"
-            });
-        }
-
-        if (this._price === 0) {
-            this.notification.addError({
-                message: "Price must be greater than zero",
-                context: "product"
-            });
-        }
-
-        if (this._price < 0) {
-            this.notification.addError({
-                message: "Price cannot be negative",
-                context: "product"
-            });
-        }
+        ProductYupValidatorFactory.create().validate(this);
     }
 
     changeName(name: string){
