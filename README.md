@@ -36,4 +36,4 @@ Esta camada é responsável por implementar as interfaces definidas na camada de
 
 ### 4. Main
 
-O diretório `main` é o ponto de entrada da aplicação. Ele é responsável por inicializar e configurar todas as camadas e módulos da aplicação, injetando as dependências necessárias.
+O arquivo de inicio `main` é o ponto de entrada da aplicação. Ele é responsável por inicializar e configurar todas as camadas e módulos da aplicação, injetando as dependências necessárias.
